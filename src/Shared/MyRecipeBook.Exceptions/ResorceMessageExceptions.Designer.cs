@@ -70,11 +70,38 @@ namespace MyRecipeBook.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The e-mail cannot be invalid.
+        /// </summary>
+        public static string Email_Invalid {
+            get {
+                return ResourceManager.GetString("Email_Invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The name cannot be empty.
         /// </summary>
         public static string Name_Empty {
             get {
                 return ResourceManager.GetString("Name_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password cannot be empty.
+        /// </summary>
+        public static string Password_Empty {
+            get {
+                return ResourceManager.GetString("Password_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password must be longer than 6 caracteres.
+        /// </summary>
+        public static string Password_Greather6 {
+            get {
+                return ResourceManager.GetString("Password_Greather6", resourceCulture);
             }
         }
     }

@@ -120,7 +120,16 @@
   <data name="Email_Empty" xml:space="preserve">
     <value>The e-mail cannot be empty</value>
   </data>
+  <data name="Email_Invalid" xml:space="preserve">
+    <value>The e-mail cannot be invalid</value>
+  </data>
   <data name="Name_Empty" xml:space="preserve">
     <value>The name cannot be empty</value>
+  </data>
+  <data name="Password_Empty" xml:space="preserve">
+    <value>The password cannot be empty</value>
+  </data>
+  <data name="Password_Greather6" xml:space="preserve">
+    <value>The password must be longer than 6 caracteres</value>
   </data>
 </root>
