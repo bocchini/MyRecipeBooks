@@ -132,4 +132,7 @@
   <data name="Password_Greather6" xml:space="preserve">
     <value>A senha tem que ser maior ou igual a 6 caracteres</value>
   </data>
+  <data name="Unknow_Error" xml:space="preserve">
+    <value>Erro desconhecido</value>
+  </data>
 </root>

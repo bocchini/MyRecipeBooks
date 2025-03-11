@@ -104,5 +104,14 @@ namespace MyRecipeBook.Exceptions {
                 return ResourceManager.GetString("Password_Greather6", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknow Error.
+        /// </summary>
+        public static string Unknow_Error {
+            get {
+                return ResourceManager.GetString("Unknow_Error", resourceCulture);
+            }
+        }
     }
 }
