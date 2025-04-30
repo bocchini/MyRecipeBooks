@@ -1,5 +1,6 @@
 ﻿using MyRecipeBook.Comunication.Request;
 using MyRecipeBook.Comunication.Responses;
+using MyRecipeBook.Domain.Repositories.User;
 using MyRecipeBook.Exceptions.ExceptionsBase;
 using MyRecipeBook.Application.Services.AutoMapper;
 using MyRecipeBook.Application.Services.Criptography;
@@ -7,7 +8,16 @@ using MyRecipeBook.Application.Services.Criptography;
 namespace MyRecipeBook.Application.UseCases.User.Register;
 public class RegisterUserCase
 {
-    public ResponseRegisterUserJson Execute(RequestRegisterUserJson request)
+    private readonly IUserReadOnlyRepository _userReadOnlyRepository;
+    private readonly IUserWriteOnlyRepository _userWriteOnlyRepository;
+
+    public RegisterUserCase(IUserReadOnlyRepository userReadOnlyRepository, IUserWriteOnlyRepository userWriteOnlyRepository)
+    {
+        _userReadOnlyRepository = userReadOnlyRepository;
+        _userWriteOnlyRepository = userWriteOnlyRepository;
+    }
+
+    public async Task<ResponseRegisterUserJson> ExecuteAsync(RequestRegisterUserJson request)
     {
         Validate(request);
 
@@ -21,12 +31,13 @@ public class RegisterUserCase
         var user = automapper.Map<Domain.Entities.User>(request);
         user.Password = passwordCriptografado.Encrypt(request.Password);
 
+        await _userWriteOnlyRepository.AddAsync(user);
+
         return new ResponseRegisterUserJson
         {
             Name = request.Name,
         };
     }
-
 
     private void Validate(RequestRegisterUserJson request)
     {

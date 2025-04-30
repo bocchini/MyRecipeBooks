@@ -13,7 +13,7 @@ public class UserController : ControllerBase
     public IActionResult Register(RequestRegisterUserJson request)
     {
 
-        var result = new RegisterUserCase().Execute(request);
+        var result = new RegisterUserCase().ExecuteAsync(request);
 
         return Created(string.Empty, result);
     }
