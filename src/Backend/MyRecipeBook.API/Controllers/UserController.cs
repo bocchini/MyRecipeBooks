@@ -8,12 +8,12 @@ namespace MyRecipeBook.API.Controllers;
 [ApiController]
 public class UserController : ControllerBase
 {
+
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisterUserJson), StatusCodes.Status201Created)]
-    public IActionResult Register(RequestRegisterUserJson request)
+    public IActionResult Register([FromServices] IRegisterUserCase useCase, [FromBody] RequestRegisterUserJson request)
     {
-
-        var result = new RegisterUserCase().ExecuteAsync(request);
+        var result = useCase.ExecuteAsync(request);
 
         return Created(string.Empty, result);
     }
