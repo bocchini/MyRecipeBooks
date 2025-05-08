@@ -4,7 +4,13 @@ using System.Text;
 namespace MyRecipeBook.Application.Services.Criptography;
 public class PasswordEncripter
 {
-    private string _chaveAdicional = "+ MyRecipeBook";
+    private readonly string _chaveAdicional;
+
+    public PasswordEncripter(string chaveAdicional)
+    {
+        _chaveAdicional = chaveAdicional;
+    }
+
     public string Encrypt(string password)
     {
         var newPassword = $"{password} {_chaveAdicional}";

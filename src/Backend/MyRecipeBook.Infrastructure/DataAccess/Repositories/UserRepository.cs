@@ -14,7 +14,7 @@ public class UserRepository : IUserReadOnlyRepository, IUserWriteOnlyRepository
 
     public async Task AddAsync(User user)
     {
-        await _context.Users.AddAsync(user);
+        await _context.Users.AddAsync(user);       
     }
 
     public async Task<bool> ExistActiveUserWithEmail(string email)

@@ -11,9 +11,9 @@ public class UserController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisterUserJson), StatusCodes.Status201Created)]
-    public IActionResult Register([FromServices] IRegisterUserCase useCase, [FromBody] RequestRegisterUserJson request)
+    public async Task<IActionResult> Register([FromServices] IRegisterUserCase useCase, [FromBody] RequestRegisterUserJson request)
     {
-        var result = useCase.ExecuteAsync(request);
+        var result = await useCase.ExecuteAsync(request);
 
         return Created(string.Empty, result);
     }
