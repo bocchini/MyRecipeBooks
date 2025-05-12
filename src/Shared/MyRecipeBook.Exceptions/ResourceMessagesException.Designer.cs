@@ -70,6 +70,15 @@ namespace MyRecipeBook.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Já existe um e-mail registrado.
+        /// </summary>
+        public static string EMAIL_EXIST {
+            get {
+                return ResourceManager.GetString("EMAIL_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O e-mail está inválido..
         /// </summary>
         public static string EMAIL_INVALID {
