@@ -1,12 +1,15 @@
 ﻿using Dapper;
+using FluentMigrator.Runner;
+using Microsoft.Extensions.DependencyInjection;
 using MySqlConnector;
 
 namespace MyRecipeBook.Infrastructure.Migrations;
 public static class DatabaseMigration
 {
-    public static void Migrate(string connectionString)
+    public static void Migrate(string connectionString, IServiceProvider serviceProvider)
     {
         EnsureDataBaseCreate(connectionString);
+        MigrationDatabase(serviceProvider);
     }
 
     private static void EnsureDataBaseCreate(string connectionString)
@@ -23,5 +26,12 @@ public static class DatabaseMigration
 
         if(records.Any() == false)
             dbConnection.Execute($"CREATE DATABASE {databaseName}");
+    }
+
+    private static void MigrationDatabase(IServiceProvider serviceProvider)
+    {
+        var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
+        runner.ListMigrations();
+        runner.MigrateUp();
     }
 }
