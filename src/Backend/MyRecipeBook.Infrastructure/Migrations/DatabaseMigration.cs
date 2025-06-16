@@ -1,7 +1,7 @@
 ﻿using Dapper;
+using MySqlConnector;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
-using MySqlConnector;
 
 namespace MyRecipeBook.Infrastructure.Migrations;
 public static class DatabaseMigration
