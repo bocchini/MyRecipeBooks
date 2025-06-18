@@ -1,4 +1,5 @@
-﻿using MyRecipeBook.Application.UseCases.User.Register;
+﻿using CommonTestUtilities.Requests;
+using MyRecipeBook.Application.UseCases.User.Register;
 
 namespace Validation.Tests.User.Register;
 public class RegisterUserValidatorTests
@@ -8,10 +9,7 @@ public class RegisterUserValidatorTests
     {
         var validator = new RegisterUserValidator();
 
-        var request = new MyRecipeBook.Comunication.Request.RequestRegisterUserJson
-        {
-            Email = "email@gamil.com"
-        };
+        var request = RequestRegisterUserJsonBuilder.Build();
 
         var result = validator.Validate(request);
 
