@@ -14,14 +14,18 @@ public class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
             .WithMessage(ResourceMessagesException.NAME_MORE_EQUAL);
         RuleFor(x => x.Email)
             .NotEmpty()
-            .WithMessage(ResourceMessagesException.EMAIL_EMPTY)
-            .EmailAddress()
-            .WithMessage(ResourceMessagesException.EMAIL_INVALID);
+            .WithMessage(ResourceMessagesException.EMAIL_EMPTY);            
         RuleFor(x => x.Password)
             .NotEmpty()
             .WithMessage(ResourceMessagesException.PASSWORD_EMPTY);
         RuleFor(x => x.Password.Length)
            .GreaterThanOrEqualTo(6)
             .WithMessage(ResourceMessagesException.PASSWORD_MORE_EQUAL);
+        When(user => !string.IsNullOrEmpty(user.Email), () =>
+        {
+            RuleFor(x => x.Email)
+            .EmailAddress()
+            .WithMessage(ResourceMessagesException.EMAIL_INVALID);
+        });
     }
 }
