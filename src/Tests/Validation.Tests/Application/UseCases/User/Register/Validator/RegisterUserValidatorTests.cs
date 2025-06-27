@@ -4,7 +4,7 @@ using MyRecipeBook.Application.UseCases.User.Register;
 using MyRecipeBook.Exceptions;
 using Shouldly;
 
-namespace Validation.Tests.User.Register;
+namespace Unit.Tests.Application.UseCases.User.Register.Validator;
 public class RegisterUserValidatorTests
 {
     [Fact]
@@ -17,7 +17,7 @@ public class RegisterUserValidatorTests
         var result = validator.Validate(request);
 
         result.IsValid.ShouldBeTrue();
-        
+
     }
 
     [Fact]
@@ -31,8 +31,8 @@ public class RegisterUserValidatorTests
         var result = validator.Validate(request);
 
         result.IsValid.ShouldBeFalse();
- 
-        result.Errors.ShouldContain(e => e.ErrorMessage.Equals(ResourceMessagesException.NAME_EMPTY));        
+
+        result.Errors.ShouldContain(e => e.ErrorMessage.Equals(ResourceMessagesException.NAME_EMPTY));
     }
 
     [Fact]
@@ -91,7 +91,7 @@ public class RegisterUserValidatorTests
     {
         var validator = new RegisterUserValidator();
 
-        var request = RequestRegisterUserJsonBuilder.Build(passwordLenght);      
+        var request = RequestRegisterUserJsonBuilder.Build(passwordLenght);
 
         var result = validator.Validate(request);
 
