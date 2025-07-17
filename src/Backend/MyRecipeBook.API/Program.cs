@@ -45,10 +45,20 @@ app.Run();
 
 void MigrateDataBase()
 {
+    if(builder.Configuration.IsUnitTestEnvironment())
+    {
+        // Skip migration in unit test environment
+        return;
+    }
+
     var connectionString = builder.Configuration.ConnectionString();
 
     var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
         
 
     MyRecipeBook.Infrastructure.Migrations.DatabaseMigration.Migrate(connectionString, serviceScope.ServiceProvider);
+}
+
+public partial class Program
+{ 
 }

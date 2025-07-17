@@ -16,6 +16,9 @@ public static class DependencyInjectionExtension
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     { 
         AddRepositories(services);
+        if(configuration.IsUnitTestEnvironment())
+            return;
+
         AddDbContext(services, configuration);
         AddFluentMugrator(services, configuration);
     }
